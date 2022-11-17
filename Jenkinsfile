@@ -13,7 +13,7 @@ pipeline {
             stage('Cleaning and install ') {
 
                 steps {
-                sh ' cd ${springF} && mvn clean install'
+                sh ' cd ${springF} && mvn clean install -DskipTests'
             }
         }
 
@@ -24,6 +24,13 @@ pipeline {
                 sh 'cd ${springF} && mvn compile'
             }
         }
+
+        stage('MVN SONARQUBE')
+            {
+                steps{
+                sh 'cd ${springF} && mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=1111'
+                }
+            }
 
 
         //     stage('Testing..') {
