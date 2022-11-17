@@ -50,7 +50,7 @@ pipeline {
                 }
 */
           stage("build and push back/front images"){
-            
+
         steps{
             script {
             
@@ -62,7 +62,7 @@ pipeline {
 
                             sh "docker build -t $USER/achat_front ${angularF}/"
 
-                            sh "echo $PASS | docker login -u $USER --password-stdin"
+                            sh '''echo $PASS | docker login -u $USER --password-stdin'''
 
                             sh "docker push $USER/achat_back"
 
