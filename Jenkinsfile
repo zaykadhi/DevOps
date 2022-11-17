@@ -56,9 +56,9 @@ pipeline {
          stage('Build images') {
                  steps {
 
-                sh "docker build -t $USER/achat_back ${springF}/"
+                sh "docker build -t zayneb15/achat_back ${springF}/"
 
-                sh "docker build -t $USER/achat_front ${angularF}/"
+                sh "docker build -t zayneb15/achat_front ${angularF}/"
             }
          }
 
@@ -82,7 +82,7 @@ pipeline {
         post{
        
             success{
-                echo "====++++push image execution failed++++===="
+                echo "====++++push image execution success++++===="
             }
         
             failure{
@@ -92,6 +92,24 @@ pipeline {
             }
        } 
 
+       stage('Deploy App back+front'){
+
+            steps {
+
+            sh 'docker-compose -f docker-compose.yml up  -d'
+             }
+
+            post{
+        
+            success{
+                echo "====++++Success++++===="
+            }
+        
+            failure{
+                echo "====++++Failed++++===="
+            }
+    
+        }
 
 
   }
