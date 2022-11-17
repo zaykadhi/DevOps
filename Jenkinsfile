@@ -71,9 +71,9 @@ pipeline {
 
             sh "docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW"
 
-            sh "docker push $USER/achat_back"
+            sh "docker push zayneb15/achat_back"
 
-            sh "docker push $USER/achat_front"
+            sh "docker push zayneb15/achat_front"
 
             sh "docker logout"
                        
