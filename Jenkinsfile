@@ -74,15 +74,13 @@ pipeline {
             sh "docker push $USER/achat_back"
 
             sh "docker push $USER/achat_front"
+
+            sh "docker logout"
                        
         }
            
         post{
-
-            always{
-                sh "docker logout"
-            }
-        
+       
             success{
                 echo "====++++push image execution failed++++===="
             }
