@@ -10,12 +10,12 @@ pipeline {
           agent any
 
           stages{
-/*
+
             stage('Cleaning and install ') {
 
                 steps {
-                sh ' cd ${springF} && mvn clean install -DskipTests'
-            }
+                sh 'cd ${springF} && mvn clean install -DskipTests'
+             }
         }
 
 
@@ -34,11 +34,11 @@ pipeline {
             }
 
 
-        //     stage('Testing..') {
-        //         steps {
-        //         sh 'cd ${springF} && mvn test'
-        //     }
-        // }
+        stage('Testing..') {
+                 steps {
+                 sh 'cd ${springF} && mvn test'
+             }
+         }
             
         
              stage("Nexus deploy"){
@@ -50,7 +50,7 @@ pipeline {
 
                 }
 
-*/
+
 
          stage('Build images') {
                  steps {
