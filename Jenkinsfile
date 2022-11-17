@@ -50,6 +50,7 @@ pipeline {
 
                 }
 
+*/
 
          stage('Build images') {
                  steps {
@@ -89,7 +90,6 @@ pipeline {
     
             }
        } 
-*/
 
        stage('Deploy App back+front'){
 
