@@ -91,7 +91,7 @@ pipeline {
     
             }
        } 
-
+/*
        stage('Deploy App back+front'){
 
             steps {
@@ -110,7 +110,7 @@ pipeline {
             }
     
         }
-
+*/
 
   }
 }
