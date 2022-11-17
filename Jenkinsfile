@@ -3,7 +3,8 @@ pipeline {
     environment {
 
      springF="achat_back"   
-     angularF="achat_front"    
+     angularF="achat_front"
+     DOCKERHUB_CREDENTIALS=credentials('dockerhub_cred')    
    }
 
           agent any
@@ -69,10 +70,8 @@ pipeline {
             script {
             
             echo "====++++executing build and push back + front images++++===="
-    
-         withCredentials([usernamePassword(credentialsId: 'dockerhub_cred', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-         
-                            sh 'echo $PASS | docker login -u $USER --password-stdin'
+
+                            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 
                             sh "docker push $USER/achat_back"
 
