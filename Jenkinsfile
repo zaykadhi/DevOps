@@ -50,8 +50,6 @@ pipeline {
 
                 }
 
-          
-*/
 
          stage('Build images') {
                  steps {
@@ -91,12 +89,13 @@ pipeline {
     
             }
        } 
-/*
+*/
+
        stage('Deploy App back+front'){
 
             steps {
 
-            sh 'docker-compose -f docker-compose.yml up  -d'
+            sh 'docker-compose -f docker-compose.yml up -d'
              }
 
             post{
@@ -110,7 +109,6 @@ pipeline {
             }
     
         }
-*/
 
   }
 }
