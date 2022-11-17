@@ -66,19 +66,17 @@ pipeline {
           stage("push back/front images"){
 
         steps{
-
-            script {
-            
+           
             echo "====++++executing build and push back + front images++++===="
 
-                            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 
-                            sh "docker push $USER/achat_back"
+            sh "docker push $USER/achat_back"
 
-                            sh "docker push $USER/achat_front"
-                        }
+            sh "docker push $USER/achat_front"
+                       
         }
-        }
+           
         post{
 
             always{
@@ -91,11 +89,14 @@ pipeline {
         
             failure{
                 echo "====++++push image execution failed++++===="
-            }
+             }
     
-        }
-    } 
-}
+            }
+       } 
 
+
+
+  }
+}
 
 
