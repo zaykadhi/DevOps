@@ -5,7 +5,7 @@ pipeline {
      springF="achat_back"   
      angularF="achat_front"
      DOCKERHUB_CREDENTIALS=credentials('dockerhub_cred')    
-   }
+                           }
 
           agent any
 
@@ -95,7 +95,7 @@ pipeline {
     
         }
     } 
-
-
-    }
 }
+
+
+
