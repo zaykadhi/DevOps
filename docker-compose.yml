@@ -5,35 +5,19 @@ version: '3.7'
 services:
   # App backend service
   achat_back:
-    # Configuration for building the docker image for the backend service
-    image: zayneb15/achat_back
+    image: zayneb15/gestion_train
     ports:
-      - "8089:8089" # Forward the exposed port 8089 on the container to port 8089 on the host machine
+      - "8083:8083"
     container_name: app_back_cont
     restart: always
     depends_on:
-      - db # This service depends on mysql. Start that first.
+      - db
     environment:
-      # Pass environment variables to the service
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/achatdb?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/gestionTrain?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: zaynab
-      SPRING_DATASOURCE_PASSWORD: zaynab@12ere
+      SPRING_DATASOURCE_PASSWORD: zay15lk15
     networks:
-      # Networks to join (Services on the same network can communicate with each other using their name)
-      - backend
-      - frontend
-
-  # Frontend Service 
-  achat_front:
-    image: zayneb15/achat_front
-    container_name: app_front_cont
-    ports:
-      - "8084:80" # Map the exposed port 80 on the container to port 8081 on the host machine
-    restart: always
-    depends_on:
-      - achat_back
-    networks:
-      - frontend
+      - gtrain
 
   # Database Service (Mysql)
   db:
@@ -42,15 +26,15 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql #Host volume-name ::: path inside of the mysql container.
+      - db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_DATABASE: achatdb
+      MYSQL_DATABASE: gestionTrain
       MYSQL_USER: zaynab
-      MYSQL_PASSWORD: zaynab@12ere
+      MYSQL_PASSWORD: zay15lk15
       MYSQL_ROOT_PASSWORD: root
     networks:
-      - backend
+      - gtrain
 
   # Database Service (Mysql)
   phpmyadmin:
@@ -64,7 +48,7 @@ services:
     environment:
       - PMA_ARBITRARY=1
     networks:
-      - backend
+      - gtrain
 
 # Volumes to be created to persist data  
 volumes:
@@ -72,7 +56,6 @@ volumes:
 
     # Networks to be created to facilitate communication between containers
 networks:
-  backend:
-  frontend:
+  gtrain:
 
 
