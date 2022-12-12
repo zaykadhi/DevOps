@@ -5,7 +5,7 @@ version: '3.7'
 services:
   # App backend service
   achat_back:
-    image: zayneb15/gestion_train
+    image: zayneb15/gestiontrain
     ports:
       - "8083:8083"
     container_name: app_back_cont
